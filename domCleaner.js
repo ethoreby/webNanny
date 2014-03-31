@@ -1,23 +1,26 @@
 $(function() {
   alert("running dom cleaner");
 
-  var dictionary = {
-    "mariner": "REPLACED!",
-    "mariners": "REPLACED!"
+  var parseElements = function(el) {
+
+    if(el.nodeType === 3) {
+      purgeElement(el);
+    }else {
+      for(var i = 0; i < el.childNodes.length; i++) {
+        parseElements(el.childNodes[i]);
+      }
+    }
   };
 
-  $("h1").each(function() {
-    if($(this).text) {            //check if the current element has text
+  var purgeElement = function(el) {
+    var re = /mariner/gi;
+    var str = el.data;
+    var str = str.replace(re, "seahawk");
 
-      var words = $(this).text().split(" ");
-      for(var i = 0; i < words.length; i++) {
-        var word = words[i];
-        if(dictionary[word.toLowerCase()]) {
-          words[i] = dictionary[word.toLowerCase()];
-        }
-      }
-      $(this).text(words.join(" "));
-    }
+    el.data = str;
+  };
+
+  $("p").each(function() {
+    parseElements(this);
   });
-
 });
