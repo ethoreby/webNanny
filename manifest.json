@@ -6,7 +6,7 @@
     "activeTab"
   ],
   "background": {
-    "scripts": ["domCleaner.js"],
+    "scripts": ["run.js"],
     "persistent": false
   },
   "browser_action": {
