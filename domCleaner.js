@@ -1,5 +1,4 @@
 $(function() {
-  alert("running dom cleaner");
 
   var dictionary = {
     "gosh darn": /Goddamn|God damn/gi,
@@ -11,7 +10,7 @@ $(function() {
     "friend": /nigger|nigga|pimp/gi,
     "guy": /coon|dyke|faggot|fag|fudgepacker|fudge packer|homo|queer/gi,
     "sleepover": /blowjob|blow job|fellate|fellatio|orgasm|sex|wank/gi,
-    "dummy": /asshole|bitch|biatch|bastard|cocksucker|cunt|jackoff|jack off|jerkoff|scumbag|skank|slut|tosser|twat|whore/gi,
+    "dummy": /assclown|asscrack|assface|assfuck|asshat|asshole|bitch|biatch|bastard|cocksucker|cunt|jackass|jackoff|jack off|jerkoff|scumbag|skank|slut|tosser|twat|whore/gi,
     "bum": /anal|anus|arse|butt|butthole|rectum/gi,
     "bum": / ass /gi,
     "privates": /ballsack|balls|boner|boob|clit|clitoris|cock|dick|dildo|labia|muff|pecker|penis|prick|pube|pussy|schlong|scrotum|tit|vagina/gi,
@@ -21,7 +20,7 @@ $(function() {
 
   var parseElements = function(el) {
     if(el.nodeType === 3) {       // 3 = text node
-      purgeElement(el);
+      replaceCount += purgeElement(el);
     }else {
       for(var i = 0; i < el.childNodes.length; i++) {
         parseElements(el.childNodes[i]);
@@ -30,15 +29,24 @@ $(function() {
   };
 
   var purgeElement = function(el) {
+    var count = 0;
     var str = el.data;
     for(var key in dictionary) {
-      str = str.replace(dictionary[key], key);
+      str = str.replace(dictionary[key], function() {
+        count++;
+        return key;
+      });
     }
 
     el.data = str;
+    return count;
   };
+
+  var replaceCount = 0;
 
   $("body").each(function() {
     parseElements(this);
   });
+
+  alert("WebNanny removed " + replaceCount + " profane words.");
 });
