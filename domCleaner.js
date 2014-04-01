@@ -15,7 +15,7 @@ $(function() {
     " bum ": / ass /gi,
     "privates": /ballsack|balls|boner|boob|clit|clitoris|cock|dick|dildo|labia|muff|pecker|penis|prick|pube|pussy|schlong|scrotum|tit|vagina/gi,
     "yuck": /jizz|piss|smegma|spunk/gi,
-    " yuck ": / cum /gi,
+    " yuck ": / cum /gi
   };
 
   var parseElements = function(el) {
@@ -31,6 +31,11 @@ $(function() {
   var purgeElement = function(el) {
     var count = 0;
     var str = el.data;
+
+    // chrome.storage.get(null, function(userDictionary) {
+    //   alert(JSON.stringify(userDictionary));
+    // });
+
     for(var key in dictionary) {
       str = str.replace(dictionary[key], function() {
         count++;

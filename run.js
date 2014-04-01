@@ -18,7 +18,16 @@ document.addEventListener('DOMContentLoaded', function() {
     if(word.length === 0 || replacement.length === 0) {
       $(".alerts").append("<div class='error'>Oops! Please enter a word and a replacement definition.</div>");
     }else {
-      $(".alerts").append("<div class='finished'>Definition added: replace " + word + " with " + replacement + "</div>");
+      var regex = new RegExp(" " + word + " ", "gi");
+      // var regex2 = new RegExp(" " + word + ".", "gi");
+      // var regex3 = new RegExp(" " + word + ",", "gi");
+      saveDefinition(regex, replacement, function() {
+        $(".alerts").append("<div class='finished'>Definition saved: replace " + word + " with " + replacement + "</div>");
+      });
     }
   });
+
+  var saveDefinition = function(regex, replacement, callback) {
+    chrome.storage.sync.set({ replacement: regex }, callback);
+  };
 });
