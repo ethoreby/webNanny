@@ -3,8 +3,25 @@
   <head>
     <title>Web Nanny</title>
     <style>
+      body{
+        width: 400px;
+      }
+      .header, .define {
+        padding: 10px;
+        background-color: cornflowerblue;
+        font-family: Kailasa;
+        color: white;
+        text-align: center;
+      }
+      .cleanPage {
+        padding: 30px 0 30px 0;
+        text-align: center;
+      }
       .finished {
-        background-color: green;
+        color: white;
+        background-color: yellowgreen;
+        padding: 8px;
+        margin: 8px;
       }
     </style>
 
@@ -12,8 +29,18 @@
   <script src="run.js"></script>
   </head>
   <body>
-    <h1>Web Nanny<h1>
-    <button class="clean">Clean this page!</button>
-    <button class="newDefinition">Add a word to the filter</button>
+    <div class="header">
+      <h2>Web Nanny</h2>
+    </div>
+
+    <div class="cleanPage">
+      <button class="clean">Clean this page!</button>
+    </div>
+
+    <div class="define">
+      <input type="text" class="ipWord" placeholder="word to filter"></input>
+      <input type="text" class="ipReplacement" placeholder="replacement word"></input>
+      <button class="newDefinition">Add a word to the filter</button>
+    </div>
   </body>
 </html>
