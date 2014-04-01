@@ -48,5 +48,10 @@ $(function() {
     parseElements(this);
   });
 
-  alert("WebNanny removed " + replaceCount + " profane words.");
+  // return replaceCount;
+  globalCount = replaceCount;
+  // alert("WebNanny removed " + replaceCount + " profane words.");
 });
+
+var globalCount; //returned results must be last expression
+globalCount;
