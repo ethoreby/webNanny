@@ -25,9 +25,11 @@ document.addEventListener('DOMContentLoaded', function() {
     }
   });
 
-  $(".resetDefinitions").on("click", function() {
+  $(".resetDefinitions").on("click", function(event) {
+    event.preventDefault();
     chrome.storage.sync.clear();
-    $(".alerts").append("<div class='finished'>Custom definitions have been cleared.</div>");
+    $(".alerts").empty();
+    $(".alerts").append("<div class='finished'>Custom definitions have been deleted.</div>");
   });
 
   var saveDefinition = function() {
