@@ -11,7 +11,6 @@
       .header, .define {
         padding: 10px;
         background-color: cornflowerblue;
-        font-family: Kailasa;
         color: white;
         text-align: center;
       }
@@ -40,6 +39,9 @@
       .error {
         background-color: tomato;
       }
+      .resetDefinitionsContainer {
+        margin-top: 15px;
+      }
     </style>
 
   <script src="jquery.min.js"></script>
@@ -62,6 +64,9 @@
       <input type="text" class="ipWord" placeholder="word to filter"></input>
       <input type="text" class="ipReplacement" placeholder="replacement word"></input>
       <button class="newDefinition">Add a word to the filter</button>
+      <div class="resetDefinitionsContainer">
+        <a href="" class="resetDefinitions">Reset custom definitions</a>
+      </div>
     </div>
   </body>
 </html>

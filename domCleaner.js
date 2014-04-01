@@ -61,9 +61,6 @@ chrome.storage.sync.get(null, function(data) {
   $("body").each(function() {
     parseElements(this);
   });
-
-  globalCount = replaceCount;
-  globalCount;
 });
 
 $("body").each(function() {
