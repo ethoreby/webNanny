@@ -33,17 +33,25 @@ $(function() {
     var str = el.data;
 
     chrome.storage.sync.get(null, function(userDictionary) {
-    });
+      for(var key in userDictionary) {
+        var regex = new RegExp(userDictionary[key], "gi");
+        str = str.replace(regex, function() {
+          count++;
+          return key;
+        });
+      }
 
-    for(var key in dictionary) {
+      for(var key in dictionary) {
       str = str.replace(dictionary[key], function() {
         count++;
         return key;
       });
     }
-
     el.data = str;
     return count;
+    });
+
+      
   };
 
   var replaceCount = 0;
@@ -52,9 +60,7 @@ $(function() {
     parseElements(this);
   });
 
-  // return replaceCount;
   globalCount = replaceCount;
-  // alert("WebNanny removed " + replaceCount + " profane words.");
 });
 
 var globalCount; //returned results must be last expression
