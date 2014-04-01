@@ -27,10 +27,6 @@ document.addEventListener('DOMContentLoaded', function() {
     var newDef = {};
     newDef[replacement] = "" + word;
     chrome.storage.sync.set(newDef, callback);
-
-    chrome.storage.sync.get(null, function(results) {
-      alert(JSON.stringify(results));
-    });
   };
 
   chrome.storage.sync.clear();    //TESTING ONLY
