@@ -12,7 +12,7 @@ $(function() {
     "sleepover": /blowjob|blow job|fellate|fellatio|orgasm|sex|wank/gi,
     "dummy": /assclown|asscrack|assface|assfuck|asshat|asshole|bitch|biatch|bastard|cocksucker|cunt|jackass|jackoff|jack off|jerkoff|scumbag|skank|slut|tosser|twat|whore/gi,
     "bum": /anal|anus|arse|butt|butthole|rectum/gi,
-    "bum": / ass /gi,
+    " bum ": / ass /gi,
     "privates": /ballsack|balls|boner|boob|clit|clitoris|cock|dick|dildo|labia|muff|pecker|penis|prick|pube|pussy|schlong|scrotum|tit|vagina/gi,
     "yuck": /jizz|piss|smegma|spunk/gi,
     " yuck ": / cum /gi,
