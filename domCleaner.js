@@ -32,9 +32,8 @@ $(function() {
     var count = 0;
     var str = el.data;
 
-    // chrome.storage.get(null, function(userDictionary) {
-    //   alert(JSON.stringify(userDictionary));
-    // });
+    chrome.storage.sync.get(null, function(userDictionary) {
+    });
 
     for(var key in dictionary) {
       str = str.replace(dictionary[key], function() {

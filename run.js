@@ -12,15 +12,12 @@ document.addEventListener('DOMContentLoaded', function() {
   $(".newDefinition").on("click", function() {
     var word = $(".ipWord").val();
     var replacement = $(".ipReplacement").val();
-
     $(".alerts").empty();
 
     if(word.length === 0 || replacement.length === 0) {
       $(".alerts").append("<div class='error'>Oops! Please enter a word and a replacement definition.</div>");
     }else {
-      var regex = new RegExp(" " + word + " ", "gi");
-      // var regex2 = new RegExp(" " + word + ".", "gi");
-      // var regex3 = new RegExp(" " + word + ",", "gi");
+      var regex = new RegExp(word, "gi");
       saveDefinition(regex, replacement, function() {
         $(".alerts").append("<div class='finished'>Definition saved: replace " + word + " with " + replacement + "</div>");
       });
@@ -28,6 +25,14 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   var saveDefinition = function(regex, replacement, callback) {
-    chrome.storage.sync.set({ replacement: regex }, callback);
+    var newDef = {};
+    newDef[replacement] = "" + regex;
+    chrome.storage.sync.set(newDef, callback);
+
+    chrome.storage.sync.get(null, function(results) {
+      alert(JSON.stringify(results));
+    });
   };
+
+  chrome.storage.sync.clear();    //TESTING ONLY
 });
