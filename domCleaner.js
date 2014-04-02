@@ -3,7 +3,7 @@ var replaceCount = 0;
 
 var userDictionary = {}
 
-var dictionary = {
+var baseDictionary = {
   "gosh darn": /Goddamn|God damn/gi,
   "dang": /damn/gi,
   "flip": /feck|fuck/gi,
@@ -21,26 +21,19 @@ var dictionary = {
   " yuck ": / cum /gi
 };
 
-var parseElements = function(el) {
+var parseElements = function(el, dictionary) {
   if(el.nodeType === 3) {       // 3 = text node
-    replaceCount += purgeElement(el);
+    replaceCount += purgeElement(el, dictionary);
   }else {
     for(var i = 0; i < el.childNodes.length; i++) {
-      parseElements(el.childNodes[i]);
+      parseElements(el.childNodes[i], dictionary);
     }
   }
 };
 
-var purgeElement = function(el) {
+var purgeElement = function(el, dictionary) {
   var count = 0;
   var str = el.data;
-
-  for(var key in userDictionary) {
-    str = str.replace(userDictionary[key], function() {
-      count++;
-      return key;
-    });
-  }
 
   for(var key in dictionary) {
     str = str.replace(dictionary[key], function() {
@@ -48,6 +41,7 @@ var purgeElement = function(el) {
       return key;
     });
   }
+
   el.data = str;
   return count;
 };
@@ -59,12 +53,12 @@ chrome.storage.sync.get(null, function(data) {
   }
 
   $("body").each(function() {
-    parseElements(this);
+    parseElements(this, userDictionary);
   });
 });
 
 $("body").each(function() {
-  parseElements(this);
+  parseElements(this, baseDictionary);
 });
 
 globalCount = replaceCount;
