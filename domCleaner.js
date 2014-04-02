@@ -36,8 +36,11 @@ var purgeElement = function(el, dictionary) {
   var str = el.data;
 
   for(var key in dictionary) {
-    str = str.replace(dictionary[key], function() {
+    str = str.replace(dictionary[key], function(str) {
       count++;
+      if(str[0].toUpperCase() === str[0]) {       //retain capitalization
+        return key[0].toUpperCase() + key.slice(1);
+      }
       return key;
     });
   }
